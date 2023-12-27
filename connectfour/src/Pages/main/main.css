@@ -1,0 +1,77 @@
+:root {
+    --main-color : #1A1A1A;
+    --secondary-color : #2F2F2F;
+    --black : black;
+    --white : white;
+    --yellow :#F6F385;
+    --red:#F26F53;
+    --purple:#DDC1FC;
+    --main-font : 'Montserrat', sans-serif;;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+}
+
+.main{
+    height: 100vh;
+    background-color: var(--purple);
+}
+
+.logo{
+    width: 12rem;
+    height: 3rem;
+    margin-left: 40rem;
+    padding-top: 5rem;
+    cursor: pointer;
+}
+
+.main>h1{
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 3.5rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 0;
+    margin-left: 35rem;
+}
+
+.buttons{
+    padding-top: 3rem;  
+}
+
+.btn1,.btn2,.btn3{
+    font-weight: 500;
+    font-family: var(--main-font);
+    width: 30rem;
+    height: 5rem;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    border: none;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    color: var(--black);
+    background-color: var(--white);
+    margin-left: 31.5rem;
+    transition: all 0.3s ease
+}
+
+.main>h3{
+    padding-left: 40rem; 
+    padding-top: 2rem;
+    color: #2F2F2F;
+    
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover{
+    font-weight: 700;
+    background-color: var(--yellow);
+    width: 31rem;
+    margin-left: 31rem;
+    font-size:2rem ;
+    transform: scale(1.1)
+}
+
+

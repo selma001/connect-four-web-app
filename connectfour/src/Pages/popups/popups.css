@@ -1,0 +1,25 @@
+:root {
+    --main-color : #1A1A1A;
+    --secondary-color : #2F2F2F;
+    --black : black;
+    --white : white;
+    --yellow :#F6F385;
+    --red:#F26F53;
+    --purple:#DDC1FC;
+    --main-font : 'Montserrat', sans-serif;;
+}
+
+.uwon{
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0;
+}
+
+.logo2{
+    width: 8.42113rem;
+    height: 2.87538rem; 
+}
+  

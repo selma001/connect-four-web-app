@@ -1,0 +1,29 @@
+hello 
+
+-BFS :
+la fonction BFS explore de manière exhaustive les états du jeu en utilisant la recherche en largeur,
+en partant de l'état initial. Elle vérifie à chaque étape si le joueur actuel a remporté la partie et
+retourne le premier coup du chemin si c'est le cas. Sinon, elle génère les mouvements possibles et 
+continue le processus jusqu'à ce qu'elle trouve une victoire ou explore tous les états possibles.
+
+-MiniMax Alpha Beta Prunning :
+explore récursivement l'arbre de décision du jeu en minimisant et maximisant alternativement les
+valeurs tout en utilisant l'élagage alpha-beta pour éviter d'explorer inutilement certaines branches.
+Cela permet de réduire le temps de calcul tout en conservant la recherche de la meilleure décision 
+possible.
+
+pour trouver le meilleur mouvement a faire on applique l'algorithm alpha beta pour tester les 7 mouvements
+possible a chaque etat et on retoune le meilleur ( selon la valeur heuristique )
+*best_move = move
+*Met à jour la meilleure valeur et le meilleur mouvement si une valeur plus élevée est trouvée.
+
+-heuristic :
+on recupere la propre position et aussi la position de l'ennemie et on teste a chaque fois les possibilté
+d'avoir quatre boule dans la ligne/ collonne/diagonal si c'est le cas pour l'AI donc il place la boule, 
+sinon c'est le cas pour l'ennemie on bloque pour qu'il puisse pas gagner ( fonction evaluate_line f la 
+classe connectfourBoard).
+pour heuristic_eval: cet fonction retourne la valeur de l'euristique selon la position actuel de la boule
+et aussi selon sa valeur dans evaluateline 
+
+
+
