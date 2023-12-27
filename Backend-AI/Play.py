@@ -5,6 +5,13 @@ class Play:
     def __init__(self):
         self.board = ConnectFourBoard()
 
+    def get_game_state(self):
+        return {
+            "board": self.board.get_current_state(),
+            "game_over": self.board.gameOver(),
+            "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None
+        }
+
     def humanTurn(self):
         self.display_board()
         move = int(input("Your turn! Enter your move (column 0-6): "))

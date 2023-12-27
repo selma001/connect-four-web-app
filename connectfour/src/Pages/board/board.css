@@ -91,7 +91,14 @@
     margin-left: 46rem;
 
 }
+
+.selected-player {
+    background-color: red; /* or any other style you want for the player's move */
+  }
   
+  .selected-computer {
+    background-color: yellow; /* or any other style you want for the computer's move */
+  }
 
   
   

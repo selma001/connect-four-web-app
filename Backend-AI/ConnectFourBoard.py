@@ -4,6 +4,9 @@ class ConnectFourBoard :
     def __init__(self, board = None):
         self.board = board if board else [[0] * 7 for _ in range(6)]
 
+    def get_current_state(self):
+        return self.board
+
     def draw_board(self):
         #affichage de la matrice
         for row in self.board:

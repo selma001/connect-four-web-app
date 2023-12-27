@@ -24,7 +24,7 @@ const Board = () => {
                 </div>
             ))}
         </div>
-        <h3>player 2</h3>
+        <h3>AI</h3>
         <div className="player2">
             <img className='smile' src={smile} alt="" />
             <h4>Your turn !</h4>
