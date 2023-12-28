@@ -92,13 +92,11 @@
 
 }
 
-.selected-player {
-    background-color: red; /* or any other style you want for the player's move */
-  }
-  
-  .selected-computer {
-    background-color: yellow; /* or any other style you want for the computer's move */
-  }
+.cell.clicked {
+    background-color: var(--red);
+}
 
-  
+.cell.ai-move {
+    background-color: var(--yellow);
+}
   

@@ -157,6 +157,33 @@ class Play:
             "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None
         }
 
+    def process_player_move(self, column):
+        # Check if the game is already over
+        if self.board.gameOver():
+            return False, "The game is already over."
+
+        # Check if the selected column is valid
+        possible_moves = self.board.getPossibleMoves()
+        if column not in possible_moves:
+            return False, "Invalid move. The selected column is full."
+
+        # Find the row to place the player's piece in the selected column
+        row = max([r for r in range(6) if self.board.board[r][column] == 0])
+
+        # Make the move
+        self.board.makeMove(row, column, 1)
+
+        # Check if the player wins after the move
+        if self.board.win(1):
+            return True, "You win! Congratulations!"
+        
+        # Check if the game is a draw
+        if self.board.gameOver():
+            return True, "The game is a draw."
+
+        # If the game is still ongoing, return success
+        return True, "Move processed successfully"
+
     def humanTurn(self):
         self.display_board()
         move = int(input("Your turn! Enter your move (column 0-6): "))
@@ -176,6 +203,8 @@ class Play:
         _, best_move = self.minimaxAlphaBetaPruning(self.board, depth=4, alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
         row = max([r for r in range(6) if self.board.board[r][best_move] == 0])
         self.board.makeMove(row, best_move, 2)
+
+        return best_move, row
 
     def minimaxAlphaBetaPruning(self, connect_four_board, depth, alpha, beta, maximizing_player):
         if depth == 0 or connect_four_board.gameOver():
