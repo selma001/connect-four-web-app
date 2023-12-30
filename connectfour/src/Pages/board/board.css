@@ -96,7 +96,9 @@
     background-color: var(--red);
 }
 
-.cell.ai-move {
+/* Add this to your CSS file */
+.ai-move {
     background-color: var(--yellow);
-}
+  }
+  
   

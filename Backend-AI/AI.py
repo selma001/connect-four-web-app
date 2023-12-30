@@ -151,13 +151,15 @@ class Play:
         self.board = ConnectFourBoard()
 
     def get_game_state(self):
+        ai_move = self.computerTurn()
         return {
             "board": self.board.get_current_state(),
             "game_over": self.board.gameOver(),
-            "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None
+            "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None,
+            "ai_move": ai_move
         }
 
-    def process_player_move(self, column):
+    def process_player_move(self, column, row):
         # Check if the game is already over
         if self.board.gameOver():
             return False, "The game is already over."
@@ -168,7 +170,7 @@ class Play:
             return False, "Invalid move. The selected column is full."
 
         # Find the row to place the player's piece in the selected column
-        row = max([r for r in range(6) if self.board.board[r][column] == 0])
+        # row = max([r for r in range(6) if self.board.board[r][column] == 0])
 
         # Make the move
         self.board.makeMove(row, column, 1)
@@ -183,7 +185,7 @@ class Play:
 
         # If the game is still ongoing, return success
         return True, "Move processed successfully"
-
+    
     def humanTurn(self):
         self.display_board()
         move = int(input("Your turn! Enter your move (column 0-6): "))
@@ -202,9 +204,12 @@ class Play:
     def computerTurn(self):
         _, best_move = self.minimaxAlphaBetaPruning(self.board, depth=4, alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
         row = max([r for r in range(6) if self.board.board[r][best_move] == 0])
+
+        # Adjust the AI move to use 0-based indexing before returning
+        ai_move = (best_move, row)
         self.board.makeMove(row, best_move, 2)
 
-        return best_move, row
+        return ai_move
 
     def minimaxAlphaBetaPruning(self, connect_four_board, depth, alpha, beta, maximizing_player):
         if depth == 0 or connect_four_board.gameOver():
