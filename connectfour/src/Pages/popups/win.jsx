@@ -5,8 +5,8 @@ import reply from '../../assets/reply.svg'
 function Win(){
     return(
         <div className="win">
-            <img src={logo}alt=""  className='logo2'/>
-            <div className="popup-container">    
+            <div className="popup-container">   
+                <img src={logo}alt=""  className='logo2'/> 
                 <h2 className='uwon'>You Won !</h2>
                 <div className="btns">
                     <button>

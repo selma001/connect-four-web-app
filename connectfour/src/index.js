@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Board from './Pages/board/board'
 import Win from './Pages/popups/win'
-import Test from './testbackend';
+import Test from './testbackend'
+import PvsP from './Pages/pvsp/PvsP';
 
 const rootElement = document.getElementById('root');
 
@@ -15,6 +16,7 @@ ReactDOM.createRoot(rootElement).render(
       <Route path="/game" element={<Board />} />
       <Route path="/win" element={<Win/>} />
       <Route path="/test" element={<Test/>} />
+      <Route path="/pvsp" element={<PvsP/>} />
     </Routes>
   </Router>
 );

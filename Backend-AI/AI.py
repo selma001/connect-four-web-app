@@ -158,6 +158,13 @@ class Play:
             "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None,
             "ai_move": ai_move
         }
+    
+    def get_game_state2(self):
+        return {
+            "board": self.board.get_current_state(),
+            "game_over": self.board.gameOver(),
+            "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None,
+        }
 
     def process_player_move(self, column, row):
         # Check if the game is already over
