@@ -9,17 +9,110 @@
     --main-font : 'Montserrat', sans-serif;;
 }
 
+.win{
+    background: rgba(255, 255, 255, 0.44);
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(13px);
+    display: flex;
+    height: 100vh;
+}
+
+.popup-container{
+    background-color: var(--secondary-color);
+    width: 45rem;
+    height: 30rem;
+    border-radius: 5rem;
+    box-shadow: 11px 9px 26px 2px rgba(0, 0, 0, 0.40);
+    margin-left: 25rem;
+    margin-top: 7rem;
+}
+
 .uwon{
-    color: var(--black);
+    color: var(--white);
     font-family: var(--main-font);
     font-size: 3rem;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 1100;
     line-height: 0;
+    margin-left: 15rem;
+    margin-top: 4rem;
 }
 
 .logo2{
     width: 8.42113rem;
     height: 2.87538rem; 
+    margin-left: 18rem;
+    margin-top: 2rem;
 }
+
+
+.btnn1{
+    margin-top: 5rem;
+}
+
+.btnn1{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    border-radius: 4rem;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    font-family: var(--main-font);
+    padding-left: 12.5rem;
+    margin-bottom: 2rem;
+    margin-left: 7rem;
+    font-weight: 700;
+    background-color: var(--yellow);
+    width: 31rem;
+}
+.cancel{
+    display: flex;
+    align-items: center;
+    width: 28rem;
+    height: 5rem;
+    border-radius: 4rem;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    font-family: var(--main-font);
+    padding-left: 11rem;
+    margin-bottom: 2rem;
+    margin-left: 8.5rem;
+}
+
+
+.awed{
+    width: 2rem;
+    height: 3rem;
+    margin-top: .3rem;
+    margin-left: 9rem;
+}
+
+.btnn1>h5{
+    color: #000;
+    font-family: var(--main-font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 3.5rem;
+}
+
+.lose{
+    background-color: var(--red);
+}
+
+.draw{
+    background-color: var(--purple);
+}
+
+
   

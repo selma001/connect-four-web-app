@@ -6,6 +6,8 @@ import Board from './Pages/board/board'
 import Win from './Pages/popups/win'
 import Test from './testbackend'
 import PvsP from './Pages/pvsp/PvsP';
+import Lose from './Pages/popups/lose';
+import Draw from './Pages/popups/draw';
 
 const rootElement = document.getElementById('root');
 
@@ -17,6 +19,8 @@ ReactDOM.createRoot(rootElement).render(
       <Route path="/win" element={<Win/>} />
       <Route path="/test" element={<Test/>} />
       <Route path="/pvsp" element={<PvsP/>} />
+      <Route path="/lose" element={<Lose/>} />
+      <Route path="/draw" element={<Draw/>} />
     </Routes>
   </Router>
 );
