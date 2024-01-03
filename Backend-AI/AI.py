@@ -166,6 +166,16 @@ class Play:
             "winner": 1 if self.board.win(1) else 2 if self.board.win(2) else None,
         }
 
+    def computer_move1(self, connect_four_board):
+        # Call your minimax with alpha-beta pruning function
+        _, best_move = self.minimaxAlphaBetaPruning(connect_four_board, depth=3, alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
+        return best_move
+
+    def computer_move2(self, connect_four_board):
+        # Call your BFS function
+        best_move = self.BFS(connect_four_board, player=1)
+        return best_move
+
     def process_player_move(self, column, row):
         # Check if the game is already over
         if self.board.gameOver():

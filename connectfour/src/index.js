@@ -8,6 +8,7 @@ import Test from './testbackend'
 import PvsP from './Pages/pvsp/PvsP';
 import Lose from './Pages/popups/lose';
 import Draw from './Pages/popups/draw';
+import AIvsAI from './Pages/aivsai/aivsai';
 
 const rootElement = document.getElementById('root');
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(rootElement).render(
       <Route path="/pvsp" element={<PvsP/>} />
       <Route path="/lose" element={<Lose/>} />
       <Route path="/draw" element={<Draw/>} />
+      <Route path="/aivsai" element={<AIvsAI/>} />
     </Routes>
   </Router>
 );
