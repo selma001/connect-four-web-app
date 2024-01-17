@@ -96,16 +96,15 @@
     background-color: var(--red);
 }
 
-/* Add this to your CSS file */
 .ai-move {
     background-color: var(--yellow);
-  }
+}
 
-.red{
+.cell.red{
     background-color: var(--red);
 }
 
-.yellow{
+.cell.yellow{
     background-color: var(--yellow);
 }
   

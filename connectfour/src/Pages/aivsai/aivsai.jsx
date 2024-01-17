@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import smile from '../../assets/smile.svg';
+import Win from './win3';
 import './aivsai.css';
 
 const AIvsAI = () => {
@@ -8,6 +9,7 @@ const AIvsAI = () => {
   const [winner, setWinner] = useState(null);
   const [alphaBetaMove, setAlphaBetaMove] = useState(null);
   const [bfsMove, setBfsMove] = useState(null);
+  const [currentMove, setCurrentMove] = useState(null);
 
   const startGame = async () => {
     try {
@@ -17,35 +19,50 @@ const AIvsAI = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         const { game_state, success } = data;
-  
+
         if (success) {
-          // Log the current board state before updating the React state
           console.log('Current Board State:', game_state.board);
-  
-          // Update the React state with the new game state
+
+          // Update the React state
           setBoard(game_state.board);
           setAlphaBetaMove(game_state.ai_moves?.alphabeta);
           setBfsMove(game_state.ai_moves?.bfs);
           setGameOver(game_state.game_over);
           setWinner(game_state.winner);
-  
-          // Log the current board state after updating the React state
+
           console.log('Updated Board State:', game_state.board);
-  
-          // Log the moves made during the game
-          game_state.moves.forEach((move, index) => {
-            console.log(`Move ${index + 1}: Player ${move.current_player} moved to column ${move.move[0]}, row ${move.move[1]}`);
-            console.log('Board State:', move.board);
-          });
-  
-          // Log the final state
-          console.log('Final Board State:', game_state.board);
-          console.log('Winner:', game_state.winner);
-          console.log('Game Over:', game_state.game_over);
+
+          // Log the moves with delay
+          const logMovesWithDelay = async () => {
+            for (let index = 0; index < game_state.moves.length; index++) {
+              const move = game_state.moves[index];
+              const delay = index === 0 ? 0 : 1000; // Adjust delay time as needed
+
+              await new Promise((resolve) => {
+                setTimeout(() => {
+                  // Update the board and highlighted moves
+                  setBoard(move.board);
+                  setAlphaBetaMove(move.current_player === 1 ? move.move : null);
+                  setBfsMove(move.current_player === 2 ? move.move : null);
+                  setCurrentMove(move);
+
+                  // Check for game over and set the winner
+                  if (index === game_state.moves.length - 1) {
+                    setGameOver(game_state.game_over);
+                    setWinner(game_state.winner);
+                  }
+
+                  resolve();
+                }, delay);
+              });
+            }
+          };
+
+          logMovesWithDelay();
         } else {
           console.error('Error in AI vs AI game:', data.message);
         }
@@ -57,14 +74,12 @@ const AIvsAI = () => {
     }
   };
 
-  useEffect(() => {
-    // Start the AI vs AI game when the component mounts
-    startGame();
-  }, []);
-
   return (
     <div className='mainboard'>
-      <button onClick={startGame}>Start AI vs AI</button>
+      <button className='btnai' onClick={startGame}>
+        Start AI vs AI
+      </button>
+      {gameOver && <Win winner={winner} />} {/* Pass the winner information to Win component */}
       <br />
       <div className="player1">
         <div className='rouge'></div>
@@ -88,7 +103,13 @@ const AIvsAI = () => {
                     ? 'bfs-move'
                     : ''
                 }`}
-              />
+              >
+                {currentMove &&
+                  currentMove.move[0] === columnIndex &&
+                  currentMove.move[1] === rowIndex && (
+                    <div className="move-indicator">{`Move ${currentMove.index + 1}`}</div>
+                  )}
+              </div>
             ))}
           </div>
         ))}
@@ -101,14 +122,11 @@ const AIvsAI = () => {
         <div className='jaune' ></div>
       </div>
 
-      {gameOver && (
-        <div>
-          {winner ? <p>{`Player ${winner} wins!`}</p> : <p>It's a draw!</p>}
-        </div>
-      )}
+      
     </div>
   );
 };
 
 export default AIvsAI;
+
 

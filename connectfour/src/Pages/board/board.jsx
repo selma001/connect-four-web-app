@@ -1,14 +1,16 @@
+// Board.js
 import React, { useState, useEffect } from 'react';
+import Win from './win'; 
 import smile from '../../assets/smile.svg';
 import './board.css';
-
-// ... (other imports and components)
 
 const Board = () => {
   const [board, setBoard] = useState(Array.from({ length: 7 }, () => Array(6).fill({ player: null, clicked: false })));
   const [playerTurn, setPlayerTurn] = useState(true);
   const [loading, setLoading] = useState(false);
   const [aiMove, setAiMove] = useState(null);
+  const [gameOutcome, setGameOutcome] = useState(null); 
+  const [showWinPopup, setShowWinPopup] = useState(false); 
 
   const handleCellClick = async (columnIndex, rowIndex) => {
     if (!playerTurn || loading || board[columnIndex][rowIndex].clicked) {
@@ -16,7 +18,7 @@ const Board = () => {
     }
 
     setLoading(true);
-    console.log(`Player move: Column ${columnIndex}, Row ${5-rowIndex}`);
+    console.log(`Player move: Column ${columnIndex}, Row ${5 - rowIndex}`);
     await sendMoveToBackend(columnIndex, rowIndex);
     setLoading(false);
   };
@@ -29,7 +31,7 @@ const Board = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          column:  columnIndex,  // Send column and row as they are
+          column: columnIndex,
           row: 5 - rowIndex,
         }),
       });
@@ -63,12 +65,24 @@ const Board = () => {
 
         if (data.game_state.game_over) {
           console.log('Game over!');
+          determineGameOutcome(data.game_state.winner);
+          setShowWinPopup(true);
         }
       } else {
         console.log('Error processing move:', data.message);
       }
     } catch (error) {
       console.error('Error sending move to backend:', error);
+    }
+  };
+
+  const determineGameOutcome = (winner) => {
+    if (winner === 1) {
+      setGameOutcome('You');
+    } else if (winner === 2) {
+      setGameOutcome('AI');
+    } else {
+      setGameOutcome('Draw');
     }
   };
 
@@ -88,7 +102,6 @@ const Board = () => {
         <img className='smile' src={smile} alt="" />
       </div>
       <h3>Player 1</h3>
-
       <div className="board">
         {board.map((column, columnIndex) => (
           <div key={columnIndex} className="column">
@@ -109,6 +122,11 @@ const Board = () => {
         <h4>AI's turn!</h4>
         <div className="jaune"></div>
       </div>
+      <Win
+        show={showWinPopup}
+        onClose={() => setShowWinPopup(false)}
+        winner={gameOutcome}
+      />
     </div>
   );
 };

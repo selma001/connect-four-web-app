@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Board from './Pages/board/board'
-import Win from './Pages/popups/win'
+import Win from './Pages/board/win'
 import Test from './testbackend'
 import PvsP from './Pages/pvsp/PvsP';
-import Lose from './Pages/popups/lose';
-import Draw from './Pages/popups/draw';
+import Lose from './Pages/board/lose';
+import Draw from './Pages/board/draw';
 import AIvsAI from './Pages/aivsai/aivsai';
-
+import Win2 from './Pages/pvsp/win2';
 const rootElement = document.getElementById('root');
 
 ReactDOM.createRoot(rootElement).render(
@@ -23,6 +23,7 @@ ReactDOM.createRoot(rootElement).render(
       <Route path="/lose" element={<Lose/>} />
       <Route path="/draw" element={<Draw/>} />
       <Route path="/aivsai" element={<AIvsAI/>} />
+      <Route path="/win2" element={<Win2/>} />
     </Routes>
   </Router>
 );

@@ -92,22 +92,6 @@
 
 }
 
-.cell.clicked {
-    background-color: var(--red);
-}
-
-/* Add this to your CSS file */
-.ai-move {
-    background-color: var(--yellow);
-  }
-
-.red{
-    background-color: var(--red);
-}
-
-.yellow{
-    background-color: var(--yellow);
-}
 
 .alpha-beta-move {
     background-color: var(--red);
@@ -117,4 +101,10 @@
     background-color: var(--yellow);
   }
   
-  
+.btnai{
+    background-color: transparent;
+    color: var(--white);
+    padding: 0.3rem;
+    cursor: pointer;
+    border: solid var(--white) 0.1rem;
+}

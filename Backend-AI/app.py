@@ -16,7 +16,7 @@ def receive_move():
     print(f"Received move from frontend: Column {column}, Row {row}")
     
     if success:
-
+        
         play_instance.computerTurn()
         game_state = play_instance.get_game_state()
 
@@ -51,16 +51,15 @@ def player_vs_player():
 
 @app.route('/aivsai', methods=['POST'])
 def AI_vs_AI():
-    game_states = []  # To store game states for each move
+    game_states = []  
 
-    # Perform AI moves alternately until the game is over
     while not play_instance.board.gameOver():
         # AI with Alpha-Beta Pruning (Player 1) turn
         _, alphabeta_move = play_instance.minimaxAlphaBetaPruning(play_instance.board, depth=4, alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
         row_alphabeta = max([r for r in range(6) if play_instance.board.board[r][alphabeta_move] == 0])
         play_instance.board.makeMove(row_alphabeta, alphabeta_move, 1)
 
-        # Save the game state after the move
+        
         game_states.append({
             'current_player': 1,
             'move': alphabeta_move,
@@ -75,14 +74,14 @@ def AI_vs_AI():
         row_bfs = max([r for r in range(6) if play_instance.board.board[r][bfs_move] == 0])
         play_instance.board.makeMove(row_bfs, bfs_move, 2)
 
-        # Save the game state after the move
+        
         game_states.append({
             'current_player': 2,
             'move': bfs_move,
             'board': play_instance.board.get_current_state()
         })
 
-    # Save the final game state
+    
     final_state = {
         'winner': 1 if play_instance.board.win(1) else 2 if play_instance.board.win(2) else None,
         'board': play_instance.board.get_current_state(),
